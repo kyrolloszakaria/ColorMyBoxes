@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setListeners() {
         val clickableViews: List<View> = listOf(box_one_text , box_two_text, box_three_text, box_four_text,
-            box_five_text, layout)
+            box_five_text, layout,red_btn,green_btn,yellow_btn)
         for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
         }
@@ -33,7 +34,20 @@ class MainActivity : AppCompatActivity() {
             R.id.box_four_text -> view.setBackgroundResource(android.R.color.holo_green_dark)
             R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
 
-            else -> view.setBackgroundColor(Color.LTGRAY)
+            // Boxes using custom colors for background
+            R.id.red_btn -> box_three_text.setBackgroundResource(R.color.my_red)
+            R.id.yellow_btn -> box_four_text.setBackgroundResource(R.color.my_yellow)
+            R.id.green_btn -> box_five_text.setBackgroundResource(R.color.my_green)
+
+            else -> {
+                view.setBackgroundColor(Color.LTGRAY)
+                val red_btn = findViewById<Button>(R.id.red_btn)
+                val green_btn = findViewById<Button>(R.id.green_btn)
+                val yellow_btn = findViewById<Button>(R.id.yellow_btn)
+                red_btn.visibility = View.VISIBLE
+                green_btn.visibility = View.VISIBLE
+                yellow_btn.visibility = View.VISIBLE
+            }
         }
     }
 }
